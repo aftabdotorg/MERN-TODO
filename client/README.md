@@ -1,8 +1,6 @@
 # MERN Todo Project
 
-output
 
-![alt output](./ss/merntodo1.png)
 
 # Getting Started with Create React App
 
