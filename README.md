@@ -2,4 +2,4 @@
 
 output
 
-!(merntodo1.jpg)
+![alt text](merntodo1.JPG)
