@@ -2,4 +2,4 @@
 
 output
 
-![alt output](./ss/merntodo1.png)
+!(merntodo1.jpg)
