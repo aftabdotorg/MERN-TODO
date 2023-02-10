@@ -21,24 +21,24 @@ function App() {
 
   //trials
 
-  const addTodo = () => {
-    return fetch(API_BASE + '/todo/new', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        text: newTodo,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => setTodos([...todos, data]));
-  };
+  // const addTodo = () => {
+  //   return fetch(API_BASE + '/todo/new', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       text: newTodo,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => setTodos([...todos, data]));
+  // };
 
-  const handleAdd = async () => {
-    await addTodo();
-    setPopupActive(false);
-  };
+  // const handleAdd = async () => {
+  //   await addTodo();
+  //   setPopupActive(false);
+  // };
 
   //trial ends
 
@@ -65,22 +65,23 @@ function App() {
     setTodos((todos) => todos.filter((todo) => todo._id !== data._id));
   };
 
-  // const addTodo = async () => {
-  //   const data = await fetch(API_BASE + '/todo/new', {
-  //     method: 'POST',
-  //     header: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       text: newTodo,
-  //     }),
-  //   }).then((res) => res.json());
+  const addTodo = async () => {
+    const data = await fetch(API_BASE + '/todo/new', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        text: newTodo,
+      }),
+    }).then((res) => res.json());
 
-  //   setTodos([...todos, data]);
+    setTodos([...todos, data]);
 
-  //   // console.log(data);
-  //   setPopupActive(false);
-  // };
+    // console.log(data);
+    setPopupActive(false);
+    setNewTodo("")
+  };
 
   return (
     <div className="App">
@@ -123,8 +124,8 @@ function App() {
             {newTodo}
             <div
               className="button"
-              //  onClick={addTodo}
-              onClick={handleAdd}
+               onClick={addTodo}
+              // onClick={handleAdd}
             >
               Create Task
             </div>
