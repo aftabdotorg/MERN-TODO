@@ -1,7 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 
-// const API_BASE = `http://localhost:4001`;
+const API_BASE = `http://localhost:4001`;
 
 function App() {
   const [todos, setTodos] = useState([]); // [initial state, updater functionn]
@@ -13,7 +13,7 @@ function App() {
   }, []); // [] dependency
 
   const GetTodos = () => {
-    fetch(`/api/todos`)
+    fetch(`${API_BASE}/todos`)
       .then((res) => res.json()) //send response to json
       .then((data) => setTodos(data))
       .catch((err) => console.error('Error:', err));
@@ -44,7 +44,7 @@ function App() {
 
   //toggle complete
   const completeTodo = async (id) => {
-    const data = await fetch(`/api/todos/complete/${id}`).then((res) =>
+    const data = await fetch(`${API_BASE}/todos/complete/${id}`).then((res) =>
       res.json()
     );
     setTodos((todos) =>
@@ -58,7 +58,7 @@ function App() {
   };
 
   const deleteTodo = async (id) => {
-    const data = await fetch('/api/todos/delete/' + id, {
+    const data = await fetch(API_BASE + '/todos/delete/' + id, {
       method: 'DELETE',
     }).then((res) => res.json());
 
@@ -66,7 +66,7 @@ function App() {
   };
 
   const addTodo = async () => {
-    const data = await fetch('/api/todo/new', {
+    const data = await fetch(API_BASE + '/todo/new', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

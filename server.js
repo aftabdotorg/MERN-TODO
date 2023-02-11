@@ -1,19 +1,19 @@
-const port = process.env.PORT || 5000;
+// const port = process.env.PORT || 5000;
 
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
-if (
-  process.env.NODE_ENV === `production` ||
-  process.env.NODE_ENV === `staging`
-) {
-  app.use(express.static(`client/build`));
-  app.get(`*`, (req, res) => {
-    res.sendFile(path.join(__dirname + `/client/build/index.html`));
-  });
-}
+// if (
+//   process.env.NODE_ENV === `production` ||
+//   process.env.NODE_ENV === `staging`
+// ) {
+//   app.use(express.static(`client/build`));
+//   app.get(`*`, (req, res) => {
+//     res.sendFile(path.join(__dirname + `/client/build/index.html`));
+//   });
+// }
 
 app.use(express.json());
 app.use(cors());
@@ -35,13 +35,13 @@ mongoose
 // import todo Schema
 const Todo = require('./models/todo');
 
-app.get('/api/todos', async (req, res) => {
+app.get('/todos', async (req, res) => {
   const todo = await Todo.find();
   res.json(todo);
 });
 
 //adding new todo post method
-app.post('/api/todo/new', (req, res) => {
+app.post('/todo/new', (req, res) => {
   const todo = new Todo({
     text: req.body.text,
   });
@@ -49,12 +49,12 @@ app.post('/api/todo/new', (req, res) => {
   res.json(todo);
 });
 
-app.delete('/api/todos/delete/:id', async (req, res) => {
+app.delete('/todos/delete/:id', async (req, res) => {
   const result = await Todo.findByIdAndDelete(req.params.id);
   res.json(result);
 });
 
-app.get('/api/todos/complete/:id', async (req, res) => {
+app.get('/todos/complete/:id', async (req, res) => {
   const todo = await Todo.findById(req.params.id);
   todo.complete = !todo.complete;
 
@@ -62,7 +62,7 @@ app.get('/api/todos/complete/:id', async (req, res) => {
   res.json(todo);
 });
 
-app.put('/api/todo/update/:id', async (req, res) => {
+app.put('/todo/update/:id', async (req, res) => {
   const todo = await Todo.findById(req.params.id);
 
   todo.text = req.body.text;
