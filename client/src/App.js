@@ -13,7 +13,7 @@ function App() {
   }, []); // [] dependency
 
   const GetTodos = () => {
-    fetch(`${API_BASE}/todos`)
+    fetch(`/api/todos`)
       .then((res) => res.json()) //send response to json
       .then((data) => setTodos(data))
       .catch((err) => console.error('Error:', err));
@@ -44,7 +44,7 @@ function App() {
 
   //toggle complete
   const completeTodo = async (id) => {
-    const data = await fetch(`${API_BASE}/todos/complete/${id}`).then((res) =>
+    const data = await fetch(`/api/todos/complete/${id}`).then((res) =>
       res.json()
     );
     setTodos((todos) =>
@@ -58,7 +58,7 @@ function App() {
   };
 
   const deleteTodo = async (id) => {
-    const data = await fetch(API_BASE + '/todos/delete/' + id, {
+    const data = await fetch('/api/todos/delete/' + id, {
       method: 'DELETE',
     }).then((res) => res.json());
 
@@ -66,7 +66,7 @@ function App() {
   };
 
   const addTodo = async () => {
-    const data = await fetch(API_BASE + '/todo/new', {
+    const data = await fetch('/api/todo/new', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
