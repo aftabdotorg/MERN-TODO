@@ -1,7 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 
-const API_BASE = `http://localhost:4001`;
+// const API_BASE = `http://localhost:4001`;
 
 function App() {
   const [todos, setTodos] = useState([]); // [initial state, updater functionn]
